@@ -1,10 +1,10 @@
 {
-    "name": "dadjokes_frontend",
+    "name": "fnt",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "parcel index.html --port 3001 --open",
+        "dev": "parcel index.html --port 3000 --open",
         "build": "parcel build index.html"
     },
     "keywords": [],
