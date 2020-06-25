@@ -1,24 +1,38 @@
 import React from "react";
-import axios from "axios";
 import ReactDOM from "react-dom";
-import New from "./components/New.js";
-import Edit from "./components/Edit.js";
-import "./css/style.css";
-import BeautyStars from "beauty-stars";
+import "./css/style.scss";
+import Form from "./components/NewForm";
+import EditForm from "./components/EditForm";
 
 const App = (props) => {
-  // This version is should be in master branch!!!!
-  const [dadJokes, setDadJokes] = React.useState(null);
+  // const addBookmarkPlaceholder = 'Add Bookmark';
+  // const EditBookmarkPlaceholder = 'Edit';
+  const [bookmarks, setBookmarks] = React.useState(null);
   const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-  const blank = { id: "", setup: "", punchline: "" };
-  const [edit, setEdit] = React.useState(blank);
-
-  const baseURL = "https://mmgenbk.herokuapp.com/dadjokes";
+  //This is test code, I used to figure out how react works
+  const [state, setState] = React.useState({
+    hello: "hello world",
+    cheese: "gouda",
+  });
+  //This is test code, I used to figure out how react works
+  const [stat1, setStat1] = React.useState({
+    id: "999999999",
+    title: "blood orange",
+    url: "url",
+  });
+  /////// sets state for editing
+  const [editBookmark, setEditBookmark] = React.useState({
+    id: "",
+    title: "",
+    url: "",
+  });
+  const baseURL = "https://mmgenbk.herokuapp.com";
+  const blank = { title: "", url: "" };
 
   const getInfo = async () => {
-    const response = await fetch(`${baseURL}/index`);
+    const response = await fetch(`${baseURL}/bookmarks/index`);
     const result = await response.json();
-    setDadJokes(result.reverse());
+    setBookmarks(result);
   };
 
   React.useEffect(() => {
@@ -26,7 +40,7 @@ const App = (props) => {
   }, []);
 
   const handleCreate = async (data) => {
-    const response = await fetch(`${baseURL}/create`, {
+    const response = await fetch(`${baseURL}/bookmarks/create`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -36,128 +50,117 @@ const App = (props) => {
     getInfo();
   };
 
-  const handleRandomJoke = () => {
-    axios
-      .get(
-        "https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes",
-        {
-          headers: { Accept: "application/json" },
-        }
-      )
-      .then((response) => {
-        handleCreate({
-          setup: response.data.setup,
-          punchline: response.data.punchline,
-        });
-        getInfo();
-      });
+  const handleSelect = async (bookmark) => {
+    setEditBookmark({
+      ...editBookmark,
+      id: bookmark._id,
+      title: bookmark.title,
+      url: bookmark.url,
+    });
+    // console.log("Edit bookmark", editBookmark);
+    // console.log("Bookmark", bookmark);
   };
 
   const handleEdit = async (data) => {
-    const response = await fetch(`${baseURL}/update/${data._id}`, {
+    const response = await fetch(`${baseURL}/bookmarks/update/${data.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
+    //grab the updated list of holidays
     getInfo();
+    //We do not want to display the edit route after we have competed an edit.
+    //This will toggle back to displaying the create functionality.
     setShowEditOrCreate(!showEditOrCreate);
   };
 
   const handleDelete = async (data) => {
-    const respone = await fetch(`${baseURL}/delete/${data._id}`, {
+    const respone = await fetch(`${baseURL}/bookmarks/delete/${data._id}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    });
-    getInfo();
-  };
-
-  const handleSelect = async (setup, punchline) => {
-    setEdit(setup, punchline);
-  };
-
-  const handleRating = async (dadJoke, value) => {
-    dadJoke.rating = value.toString();
-    const response = await fetch(`${baseURL}/update/${dadJoke._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dadJoke),
     });
     getInfo();
   };
 
   return (
-    <div className="main-content">
-      <div className="wrapper">
-        <h1>Dad Jokes</h1>
-      </div>
-      <div className="add-a-joke">
-        <h3>Add A Dad joke</h3>
-        <New
-          newData={blank}
-          handleSubmit={handleCreate}
-          handleRandomJoke={handleRandomJoke}
-        />
-      </div>
-      <hr />
-      {dadJokes
-        ? dadJokes.map((dadJoke, index) => {
-            return (
-              <div key={dadJoke._id}>
-                {index % 2 === 0 ? (
-                  <div className="even">
-                    <h1>{dadJoke.setup}</h1>
-                    <h1 className="typing">{dadJoke.punchline}</h1>
-                    <BeautyStars
-                      value={dadJoke.rating}
-                      onChange={(value) => handleRating(dadJoke, value)}
-                    />
-                    <div className="dad_joke_row">
-                      <div className="edit_delete">
-                        <Edit editData={dadJoke} handleSubmit={handleEdit} />
+    <>
+      <div className="main">
+        <h1>Bookmark'd</h1>
+        <h2>Created By James Gathings and Phil Mayo using the MERN stack</h2>
+        {/**
+         * This toggles to either show the create functionality or show the edit functionality
+         */}
+        {!showEditOrCreate && (
+          <div className="addForm">
+            <h3>Add A Bookmark</h3>
+            <Form initial={blank} handleSubmit={handleCreate} />
+          </div>
+        )}
+        {/**
+         * This toggles to either show the create functionality or show the edit functionality
+         */}
+        {showEditOrCreate && (
+          <div className="editForm">
+            <EditForm
+              initial={editBookmark}
+              handleSubmit={handleEdit}
+              resetForm={blank}
+            />
+          </div>
+        )}
+        {/**
+         * The next couple of lines are test/probing code.
+         */}
+        {/* <h1>{state.cheese}</h1>
+            {showText && <h1>{stat1.id} - {stat1.title} - {stat1.url}</h1>} */}
+        <div>
+          {bookmarks
+            ? bookmarks.map((bookmark, index) => {
+                return (
+                  <div key={bookmark._id}>
+                    <div className="main-list-item">
+                      <div className="main-list-item-div main-list-item-div-one">
+                        <a href={bookmark.url} target="_blank">
+                          <button>{bookmark.title}</button>
+                        </a>
+                      </div>
+                      <div className="main-list-item-div main-list-item-div-two">
                         <button
+                          className="main-list-btn"
                           onClick={() => {
-                            handleDelete(dadJoke);
+                            handleSelect(bookmark);
+                            /**
+                             * Toggle between displaying edit or create functionality.
+                             */
+                            setShowEditOrCreate(!showEditOrCreate);
+                            // setStat1({...stat1,id:bookmark._id,title:bookmark.title,url:bookmark.url});
+                            // setState({...state,cheese:"American"})
+                            // console.log("EditBookmark", editBookmark);
+                            // console.log("----------");
                           }}
                         >
-                          Delete
+                          &#9998;
+                        </button>
+                        <button
+                          className="main-list-btn"
+                          onClick={() => {
+                            handleDelete(bookmark);
+                          }}
+                        >
+                          &#10007;
                         </button>
                       </div>
                     </div>
                   </div>
-                ) : (
-                  <div className="odd">
-                    <h1>{dadJoke.setup}</h1>
-                    <h1 className="typing">{dadJoke.punchline}</h1>
-                    <BeautyStars
-                      value={dadJoke.rating}
-                      onChange={(value) => handleRating(dadJoke, value)}
-                    />
-                    <div className="dad_joke_row odd">
-                      <div className="edit_delete">
-                        <Edit editData={dadJoke} handleSubmit={handleEdit} />
-                        <button
-                          onClick={() => {
-                            handleDelete(dadJoke);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })
-        : "...Loading"}
-    </div>
+                );
+              })
+            : "...Loading"}
+        </div>
+      </div>
+    </>
   );
 };
 

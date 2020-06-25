@@ -1,29 +1,26 @@
 {
-    "name": "fnt",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "parcel index.html --port 3000 --open",
-        "build": "parcel build index.html"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "axios": "^0.19.2",
-        "beauty-stars": "^1.1.0",
-        "parcel": "^1.12.4",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-is": "^16.13.1",
-        "react-star-ratings": "^2.3.0",
-        "styled-components": "^5.1.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.10.2",
-        "@babel/plugin-transform-runtime": "^7.10.1",
-        "@babel/preset-env": "^7.9.6",
-        "@babel/preset-react": "^7.10.1"
-    }
+  "name": "bookmarkd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html --port 1985 --open",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "parcel": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "sass": "^1.26.8"
+  }
 }
