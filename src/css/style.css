@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Bellota:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+.main-content {
+    margin-left: 2%;
+}
+
+body {
+    background-color: #FAB5A6;
+}
+
+h3 {
+    font-family: 'Balsamiq Sans', cursive;
+    color: #853417;
+}
+.add-a-joke {
+    margin-top: 8%;
+}
+
+.setup_row_punchline_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+hr {
+    border: 1px solid black;
+}
+
+.header-main {
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px #000;
+    text-align: center;
+}
+
+.form {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #FAB5A6;
+    color: #853417;
+}
+
+h3 {
+    font-family: 'Balsamiq Sans', cursive;
+}
+.add-a-joke {
+    margin-top: 3%;
+}
+
+hr {
+    border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.header-main {
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px #000;
+    text-align: center;
+}
+
+.main {
+    max-width: 50em;
+    margin: 0 auto;
+    transform: skewY(1eg);
+}
+
+.dad_joke_row{
+    display:flex;
+    flex-direction: row;
+}
+
+.odd{
+    background-color: #fbb251;
+}
+.even{
+    background-color:#3dc34c;
+}
+
+.typing {
+  color: #853417;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  /* border-right: .15em solid rgb(70, 69, 69); The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; 
+  animation: 
+    typing 4.5s steps(30, end),
+    blink-caret .5s step-end;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  25% { border-color: rgb(61, 60, 58) }
+}
+
+.buttons {
+    display:inline-block;
+}
+
+.answer {
+    color: rgb(44, 52, 156);
+}
+
+button, input[type="button"] {
+    background-color: rgb(179, 72, 58);
+    border: none;
+    color: white;
+    font-family: 'Acme', sans-serif;
+    padding: 5px 5px;
+    margin: 3px 3px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+input[type=text] {
+    width: 40%;
+    padding: 5px 5px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    text-align: center;
+    background-color:rgb(200, 63, 63);
+    margin: 0;
+}
+.wrapper h1 {
+    color: purple;
+    font-size: 102px;
+    font-family: 'Acme', sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    background: linear-gradient(to right, #493131 10%, rgb(238, 15, 15) 50%, #130808 60%);
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: purple;
+    background-clip: text;
+    -text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 1.5s linear infinite;
+    display: inline-block;
+}
+
+@keyframes textclip {
+	to {
+		background-position: 200% center;
+	}
+}
+
+
+
+
+

@@ -1,2 +1,7 @@
-node_modules
-dist
+.env
+.babelrc/
+.cache/
+/node_modules
+/dist
+/dist/app.a6a4d504.js
+/dist/app.a6a4d504.js.map
