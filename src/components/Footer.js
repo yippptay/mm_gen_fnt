@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 export default (props) => {
-    return (
-        <>
-            <h1>Footer</h1>
-        </>
-    );
+  return (
+    <>
+      <h1>Footer</h1>
+    </>
+  );
 };
