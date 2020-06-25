@@ -19,12 +19,10 @@
         },
         mounted() {
           var vm = this;
-          axios
-            .get("https://mmgenbk.herokuapp.com/api")
-            .then((data) => {
-              vm.src = JSON.stringify(data.data);
-              console.log(data);
-            });
+          axios.get("https://mmgenbk.herokuapp.com/products").then((data) => {
+            vm.src = JSON.stringify(data.data);
+            console.log(data);
+          });
         },
       });
     </script>
