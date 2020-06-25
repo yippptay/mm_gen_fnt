@@ -18,7 +18,7 @@
         },
         mounted() {
           var vm = this;
-          axios.get("http://localhost:3000/api").then((data) => {
+          axios.get("https://mmgenbk.herokuapp.com/api").then((data) => {
             vm.src = JSON.stringify(data.data);
           });
         },

@@ -3,11 +3,8 @@
   <head>
     <title></title>
 
-    <script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
-    <script
-      type="text/javascript"
-      src="node_modules/axios/dist/axios.js"
-    ></script>
+    <script type="text/javascript" src="vue.js"></script>
+    <script type="text/javascript" src="axios.js"></script>
   </head>
   <body>
     <div id="app">
@@ -21,7 +18,7 @@
         },
         mounted() {
           var vm = this;
-          axios.get("http://localhost:3000/api").then((data) => {
+          axios.get("https://mmgenbk.herokuapp.com/api").then((data) => {
             vm.src = JSON.stringify(data.data);
           });
         },
