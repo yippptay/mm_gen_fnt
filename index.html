@@ -10,6 +10,7 @@
     <div id="app">
       <textarea v-model="src"></textarea>
     </div>
+
     <script type="text/javascript">
       new Vue({
         el: "#app",
@@ -18,9 +19,12 @@
         },
         mounted() {
           var vm = this;
-          axios.get("https://mmgenbk.herokuapp.com/api").then((data) => {
-            vm.src = JSON.stringify(data.data);
-          });
+          axios
+            .get("https://mmgenbk.herokuapp.com//api")
+            .then((data) => {
+              vm.src = JSON.stringify(data.data);
+              console.log(data);
+            });
         },
       });
     </script>
